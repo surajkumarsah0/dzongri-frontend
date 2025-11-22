@@ -1,18 +1,13 @@
-// DzongriMenu.jsx
-// React + Tailwind component (JSX)
-// Uses local image: /mnt/data/9d535d24-a6d7-4545-bcde-2ead62e4607d.png
-// Paste into your project and import where needed.
-
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MoveRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const DEFAULT_IMAGE = "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8657.JPG";
 
 export default function DzongriMenu({ imageUrl = DEFAULT_IMAGE }) {
-  const menuRef = useRef(null);
   const marqueeRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Pause animation if user prefers reduced motion
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches && marqueeRef.current) {
@@ -20,158 +15,153 @@ export default function DzongriMenu({ imageUrl = DEFAULT_IMAGE }) {
     }
   }, []);
 
-  // Ensure marquee duplicates are wide enough for seamless scrolling.
-  // No JS resizing required for this implementation; duplicates handled in markup.
-
-
   return (
-    <div className="">
-      {/* Menu Section */}
-      <section
-        ref={menuRef}
-        className="bg-[#fdf9f5] py-12 border-t border-b border-transparent"
-      >
-        <div className="max-w-6xl mx-auto px-6">
-           <div className=" text-center mb-12">
-          <h3 className="text-4xl md:text-5xl font-extrabold text-[#5b2b2b] tracking-wider mb-4" style={{fontFamily: '"Playfair Display", serif'}}>
+    <section className="bg-[#fdf9f5] py-12 border-t border-b border-transparent">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Title */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h3
+            className="text-4xl md:text-5xl font-extrabold text-[#5b2b2b] tracking-wider mb-4"
+            style={{ fontFamily: '"Playfair Display", serif' }}
+          >
             MENU
           </h3>
           <div className="flex justify-center">
             <div className="w-16 h-1 bg-amber-400 rounded"></div>
           </div>
-        </div>
+        </motion.div>
 
-          {/* Auto-scrolling marquee */}
-          <div className="relative overflow-hidden">
-            {/* marquee track: duplicated list for seamless animation */}
-            <div
-              ref={marqueeRef}
-              className="marquee flex items-stretch gap-6"
-              // accessibility: allow stop on focus/hover
-              onMouseEnter={() => { if (marqueeRef.current) marqueeRef.current.style.animationPlayState = "paused"; }}
-              onMouseLeave={() => { if (marqueeRef.current) marqueeRef.current.style.animationPlayState = "running"; }}
-              onFocus={() => { if (marqueeRef.current) marqueeRef.current.style.animationPlayState = "paused"; }}
-              onBlur={() => { if (marqueeRef.current) marqueeRef.current.style.animationPlayState = "running"; }}
-            >
-              {/* render two cycles of items for continuous scroll */}
-              {Array.from({ length: 2 }).map((_, cycle) => (
-                <div key={cycle} className="inline-flex gap-6 items-stretch pr-6">
-                  {menuItems.map((item, idx) => (
-                    <article
-                      key={`${cycle}-${idx}`}
-                      className="min-w-[260px] max-w-[300px] bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300"
-                      tabIndex={0}
-                      aria-label={`Menu item ${item.title}`}
-                    >
-                      <img
-                        src={item.image || imageUrl}
-                        alt={item.title}
-                        className="w-full h-40 object-cover"
-                      />
-                      <div className="p-4 ">
-                        <h5 className="font-semibold text-[#5b2b2b]">{item.title}</h5>
-                        <p className="text-sm text-gray-600 mt-2 line-clamp-3">{item.desc}</p>
-                        <div className="mt-3 flex items-center justify-between">
-                          <span className="font-medium text-[#f6ad55]">{item.price}</span>
-                        
-                        </div>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              ))}
-            </div>
-
-            {/* Soft fade edges */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#fffaf7] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#fffaf7] to-transparent" />
-          </div>
-
-          {/* Explore button */}
-          <div className="mt-8 text-center">
-              <button 
-                    className="px-11 py-2 mt-4 rounded-full font-medium text-lg transition-all duration-500 transform hover:scale-105 hover:shadow-2xl group relative overflow-hidden"
-                    style={{ 
-                    fontFamily: '"Montserrat", sans-serif',
-                    backgroundColor: '#f6ad55',
-                    color: 'white'
-                    }}
-               
-              >
-                <span className="relative z-10 flex items-center gap-2">Explore Menu <MoveRight /> </span>
-              </button>
+        {/* Marquee */}
+        <div
+          className="relative overflow-hidden"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div
+            ref={marqueeRef}
+            className={`flex gap-6 items-stretch animate-marquee`}
+            style={{
+              whiteSpace: "nowrap",
+              animationPlayState: isHovered ? "paused" : "running",
+              animationDuration: "60s", // slower scroll
+            }}
+          >
+            {Array.from({ length: 2 }).map((_, cycle) =>
+              menuItems.map((item, idx) => (
+                <motion.article
+                  key={`${cycle}-${idx}`}
+                  className="inline-block min-w-[240px] sm:min-w-[260px] max-w-[280px] sm:max-w-[300px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0 cursor-pointer"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.8, delay: idx * 0.1 }}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.05,
+                    boxShadow: "0px 15px 30px rgba(0,0,0,0.2)",
+                  }}
+                >
+                  <img
+                    src={item.image || imageUrl}
+                    alt={item.title}
+                    className="w-full h-40 sm:h-44 object-cover"
+                  />
+                  <div className="p-4">
+                    <h5 className="font-semibold text-[#5b2b2b] text-lg">{item.title}</h5>
+                    <p className="text-sm text-gray-600 mt-2 line-clamp-3">{item.desc}</p>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="font-medium text-[#f6ad55]">{item.price}</span>
+                    </div>
+                  </div>
+                </motion.article>
+              ))
+            )}
           </div>
         </div>
-        
-      </section>
 
-      {/* local styles for marquee animation */}
-      <style>{`
-        /* marquee: translate from 0 -> -50% so duplicated content flows */
-        .marquee {
-          display: flex;
-          /* large duration for relaxed scroll; adjust as needed */
-          animation: marqueeAnim 24s linear infinite;
-          will-change: transform;
-        }
-        .marquee:focus {
-          outline: none;
-        }
-        .marquee:hover {
-          animation-play-state: paused;
-        }
-        @keyframes marqueeAnim {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
+        {/* Explore Button */}
+        <motion.div
+  className="mt-8 flex justify-center"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+>
+  <button
+    className="px-8 sm:px-11 py-2 mt-4 rounded-full font-medium text-lg transition-transform duration-500 transform hover:scale-105 hover:shadow-2xl inline-flex items-center gap-2"
+    style={{
+      fontFamily: '"Montserrat", sans-serif',
+      backgroundColor: "#f6ad55",
+      color: "white",
+    }}
+  >
+    <span className="flex items-center gap-2">
+      Explore Menu <MoveRight />
+    </span>
+  </button>
+</motion.div>
 
-        /* small utility: clamp lines (requires Tailwind line-clamp plugin for production) */
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
+      </div>
 
-        /* Respect reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-          .marquee { animation: none; }
-        }
-      `}</style>
-    </div>
+      {/* Marquee animation */}
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee linear infinite;
+          }
+        `}
+      </style>
+    </section>
   );
 }
 
-// sample menu items - replace with real images/data as needed
 const menuItems = [
   {
     title: "Ema Datshi",
-    desc: "Traditional Bhutanese cheese & chili stew served with red rice; comforting & spicy.",
-    price: "₹ 350 ",
-    image: DEFAULT_IMAGE,
+    desc: "A traditional Bhutanese dish made with chili peppers and cheese, served with red rice.",
+    price: "₹ 1222",
+    image: "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8651.JPG",
   },
   {
-    title: "Hoentay",
-    desc: "Buckwheat dumplings filled with spinach & cheese, lightly steamed and served warm.",
-    price: "₹ 300",
-    image: DEFAULT_IMAGE,
+    title: "Phaksha Paa",
+    desc: "Sliced pork cooked with radish and dried chilies, a flavorful and hearty dish.",
+    price: "₹ 1500",
+    image: "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8652.JPG",
   },
   {
-    title: "Momos",
-    desc: "Steamed dumplings (chicken or veg) served with our house dipping sauce.",
-    price: "₹ 250",
-    image: DEFAULT_IMAGE,
+    title: "Jasha Maru",
+    desc: "Spicy chicken stew with tomatoes, garlic, and ginger, served with rice.",
+    price: "₹ 1400",
+    image: "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8653.JPG",
   },
   {
-    title: "Red Rice Bowl",
-    desc: "Nutritious Bhutanese red rice with seasonal vegetables and light spices.",
-    price: "₹ 280",
-    image: DEFAULT_IMAGE,
+    title: "Momo",
+    desc: "Steamed dumplings filled with minced meat or vegetables, served with a spicy dipping sauce.",
+    price: "₹ 1300",
+    image: "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8654.JPG",
   },
   {
-    title: "Sukha Phaksha",
-    desc: "Smoky-spiced pork with local herbs, paired with steamed rice and pickles.",
-    price: "₹ 420",
-    image: DEFAULT_IMAGE,
+    title: "Red Rice",
+    desc: "A staple in Bhutanese cuisine, served as a side dish with various curries and stews.",
+    price: "₹ 1000",
+    image: "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8655.JPG",
+  },
+  {
+    title: "Suja (Butter Tea)",
+    desc: "Traditional Bhutanese tea made with butter and salt, perfect for warming up on a cold day.",
+    price: "₹ 800",
+    image: "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8656.JPG",
   },
 ];

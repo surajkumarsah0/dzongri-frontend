@@ -1,58 +1,54 @@
-import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from 'lucide-react';
+import React from "react";
+import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 const RestaurantFooter = () => {
   return (
     <footer style={{ background: 'linear-gradient(to bottom, #503030, #603838)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-white">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+
           {/* Brand Section */}
-          <div className="space-y-4">
-            <h2 className="text-3xl font-serif font-bold">DZONG<span style={{ color: '#f6ad55' }}>RI</span></h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
+          >
+            <h2 className="text-3xl font-serif font-bold">
+              DZONG<span style={{ color: '#f6ad55' }}>RI</span>
+            </h2>
             <p className="text-sm opacity-80 leading-6 p-2" style={{ fontFamily: '"Montserrat", sans-serif' }}>
               Experience culinary excellence with authentic flavors and warm hospitality.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 relative group"
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-              >
-                
-                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundColor: '#f6ad55' }}></span>
-                <Facebook size={20} className="relative z-10" style={{ color: 'white' }} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 relative group"
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-              >
-                
-                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundColor: '#f6ad55' }}></span>
-                <Instagram size={20} className="relative z-10" style={{ color: 'white' }} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 relative group"
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-              >
-         
-                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundColor: '#f6ad55' }}></span>
-                <Twitter size={20} className="relative z-10" style={{ color: 'white' }} />
-              </a>
+              {[Facebook, Instagram, Twitter].map((Icon, idx) => (
+                <a
+                  key={idx}
+                  href="#"
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 relative group"
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+                >
+                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundColor: '#f6ad55' }}></span>
+                  <Icon size={20} className="relative z-10" style={{ color: 'white' }} />
+                </a>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 " style={{ fontFamily: '"Playfair Display", serif' }}>Quick Links</h3>
-            <ul className="space-y-2 text-sm " style={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: '"Montserrat", sans-serif' }}>
-              {['Home', 'Menu', 'About Us', 'Reservations', 'Gallery', 'Blog'].map((link) => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>Quick Links</h3>
+            <ul className="space-y-2 text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: '"Montserrat", sans-serif' }}>
+              {['Home', 'Menu', 'About Us', 'Reservations', 'Gallery'].map((link) => (
                 <li key={link}>
-                  <a
-                    href="#"
-                    className="transition-all duration-300 inline-block relative group"
-                    style={{ color: 'rgba(255, 255, 255, 0.8)' }}
-                  >
+                  <a href="#" className="transition-all duration-300 inline-block relative group">
                     <span className="relative">
                       {link}
                       <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#f6ad55' }}></span>
@@ -61,12 +57,17 @@ const RestaurantFooter = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Opening Hours */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>Opening Hours</h3>
-            <ul className="space-y-2 text-sm " style={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: '"Montserrat", sans-serif' }}>
+            <ul className="space-y-2 text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: '"Montserrat", sans-serif' }}>
               <li className="flex justify-between">
                 <span>Monday - Friday</span>
                 <span className="font-semibold text-white">11:00 - 23:00</span>
@@ -80,10 +81,15 @@ const RestaurantFooter = () => {
                 <span className="font-semibold text-white">10:00 - 22:00</span>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>Contact Us</h3>
             <ul className="space-y-3" style={{ fontFamily: '"Montserrat", sans-serif' }}>
               <li className="flex items-start space-x-3 group" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
@@ -105,39 +111,39 @@ const RestaurantFooter = () => {
                 </span>
               </li>
             </ul>
-          </div>
+          </motion.div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 flex flex-col md:flex-row justify-between items-center" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 pt-8 flex flex-col md:flex-row justify-between items-center border-t border-white/10"
+        >
           <p className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: '"Montserrat", sans-serif' }}>
             © 2024 DZONGRI. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a 
-              href="#" 
-              className="text-sm transition-all duration-300 relative group"
-              style={{ color: 'rgba(255, 255, 255, 0.8)' }}
-            >
-              <span className="relative">
-                Privacy Policy
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#f6ad55' }}></span>
-              </span>
-            </a>
-            <a 
-              href="#" 
-              className="text-sm transition-all duration-300 relative group"
-              style={{ color: 'rgba(255, 255, 255, 0.8)' }}
-            >
-              <span className="relative">
-                Terms of Service
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#f6ad55' }}></span>
-              </span>
-            </a>
+            {['Privacy Policy', 'Terms of Service'].map((link, idx) => (
+              <a
+                key={idx}
+                href="#"
+                className="text-sm transition-all duration-300 relative group"
+                style={{ color: 'rgba(255, 255, 255, 0.8)' }}
+              >
+                <span className="relative">
+                  {link}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#f6ad55' }}></span>
+                </span>
+              </a>
+            ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
 };
+
 export default RestaurantFooter;
