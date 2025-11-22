@@ -3,16 +3,17 @@ import { MoveRight } from "lucide-react";
 
 // Example images (replace with your own paths)
 const galleryImages = [
-  "../../src/assets/images/IMG_8650.JPG",
-  "../../src/assets/images/IMG_8652.JPG",
-  "../../src/assets/images/IMG_8653.JPG",
-  "../../src/assets/images/IMG_8654.JPG",
-  "../../src/assets/images/IMG_8655.JPG",
-  "../../src/assets/images/IMG_8656.JPG",
-  "../../src/assets/images/IMG_8657.JPG",
-  "../../src/assets/images/IMG_8650.JPG",
-  "../../src/assets/images/IMG_8647.jpg",
-  "../../src/assets/images/a.jpg"
+  "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8647.jpg",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8650.JPG",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8651.JPG",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8652.JPG",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8653.JPG",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8654.JPG",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8655.JPG",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8656.JPG",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8657.JPG",
+"https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/a.jpg"
+
 ];
 
 // Predefined “random” positions for a static look

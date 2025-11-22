@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 // #fdf9f5
 
-export default function OurStory({ imageUrl = '../../src/assets/images/IMG_8653.JPG' }) {
+export default function OurStory({ imageUrl = 'https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8653.JPG' }) {
   return (
     <section className="bg-[white] py-30">
       <div className="max-w-6xl mx-auto px-6 py-20">

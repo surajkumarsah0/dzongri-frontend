@@ -23,7 +23,7 @@ const WeOfferYou = () => {
                     <div className="order-2 md:order-1 flex justify-center md:justify-end">
                         <div className="w-full h-[30rem] md:w-[46rem] md:h-[30rem] rounded-2xl shadow-2xl overflow-hidden relative bg-white hover:shadow-black-300/50 hover:scale-105 transition-transform duration-500">
                             <img
-                                src="../../src/assets/images/IMG_8651.JPG"
+                                src="https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8651.JPG"
                                 alt="Authentic Bhutanese Dumpling"
                                 className="w-full h-full object-cover block hover:scale-102 transition-transform duration-500"
                             />
@@ -55,7 +55,7 @@ const WeOfferYou = () => {
                     <div className="order-1 md:order-2 flex justify-center md:justify-end">
                         <div className="w-full h-[30rem] md:w-[55rem] md:h-[42rem] rounded-2xl shadow-2xl overflow-hidden relative bg-white hover:shadow-black-300/50 hover:scale-105 transition-transform duration-500">
                             <img
-                                src="../../src/assets/images/IMG_8647.jpg"
+                                src="https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8647.jpg"
                                 alt="Authentic Bhutanese Dumpling"
                                 className="w-full h-full object-cover block hover:scale-102 transition-transform duration-500"
                             />

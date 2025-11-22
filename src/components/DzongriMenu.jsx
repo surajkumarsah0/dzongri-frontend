@@ -6,7 +6,7 @@
 import React, { useEffect, useRef } from "react";
 import { MoveRight } from "lucide-react";
 
-const DEFAULT_IMAGE = "../../src/assets/images/IMG_8655.JPG";
+const DEFAULT_IMAGE = "https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/IMG_8657.JPG";
 
 export default function DzongriMenu({ imageUrl = DEFAULT_IMAGE }) {
   const menuRef = useRef(null);
