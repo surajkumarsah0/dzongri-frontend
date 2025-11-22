@@ -38,7 +38,7 @@ function Hero() {
           style={{ zIndex: 0 }}
         >
           {/* Replace this URL with your video path */}
-          <source src="../../src/assets/videos/dzonggri.mp4" type="video/mp4" />
+          <source src="https://ppguwyrgcucnxb3f.public.blob.vercel-storage.com/dzonggri%20%281%29.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
