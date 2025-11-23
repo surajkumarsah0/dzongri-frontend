@@ -5,4 +5,5 @@
 html,body,#root {
     transform: none !important;
     zoom:1 !important;
+    overflow-x: hidden !important;
 }
