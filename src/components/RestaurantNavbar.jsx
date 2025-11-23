@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -16,11 +17,11 @@ const RestaurantNavbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Menu', href: '#menu' },
-    { name: 'About', href: '#about' },
-    { name: 'Reservations', href: '#reservations' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', href: '/' },
+    { name: 'Menu', href: '/menu' },
+    { name: 'About', href: '/about' },
+    { name: 'Reservations', href: '/reservations' },
+    { name: 'Contact', href: '/contact' }
   ];
 
   return (
@@ -35,7 +36,8 @@ const RestaurantNavbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="flex-shrink-0 pointer-events-none ">
+           <Link to={navLinks[0].href}>
+          <div className="flex-shrink-0 pointer">
             <h1
               className="text-3xl font-serif font-bold transition-all duration-300"
               style={isScrolled ? { color: '#603838' } : { color: 'white' }}
@@ -43,6 +45,7 @@ const RestaurantNavbar = () => {
               DZONG<span style={{ color: '#f6ad55' }}>RI</span>
             </h1>
           </div>
+            </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
