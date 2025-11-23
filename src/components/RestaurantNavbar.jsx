@@ -50,9 +50,9 @@ const RestaurantNavbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
-              <a
+             <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="px-4 py-2 text-md font-medium transition-all duration-300 relative group"
                 style={isScrolled ? { color: '#603838' } : { color: 'white' }}
               >
@@ -61,7 +61,7 @@ const RestaurantNavbar = () => {
                   className="absolute bottom-0 left-4 right-4 h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                   style={{ backgroundColor: '#f6ad55' }}
                 ></span>
-              </a>
+              </Link>
             ))}
             <button
               className="ml-4 px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
